@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ORDEM DE SERVIÇO</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">+</div>
+      <div class="logo-text">
+        <span class="logo-name">Dr. Ovídio</span>
+        <span class="logo-sub">SISTEMA DE CHAMADOS</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#" class="nav-item active" data-page="inicio">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+          <polyline points="9,22 9,12 15,12 15,22" />
+        </svg>
+        INÍCIO
+      </a>
+      <a href="#" class="nav-item" data-page="abrir-chamado">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="8" x2="12" y2="16" />
+          <line x1="8" y1="12" x2="16" y2="12" />
+        </svg>
+        ABRIR CHAMADO
+      </a>
+      <a href="#" class="nav-item" data-page="chamados">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+          <polyline points="14,2 14,8 20,8" />
+        </svg>
+        CHAMADOS
+      </a>
+      <a href="#" class="nav-item" data-page="membros">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+          <circle cx="9" cy="7" r="4" />
+          <path d="M23 21v-2a4 4 0 00-3-3.87" />
+          <path d="M16 3.13a4 4 0 010 7.75" />
+        </svg>
+        ÁREA DE MEMBROS
+      </a>
+      <a href="#" class="nav-item nav-admin" data-page="admin" id="nav-admin-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0110 0v4" />
+        </svg>
+        ADMINISTRADOR
+      </a>
+    </nav>
+
+    <button class="sidebar-toggle" id="sidebar-toggle" title="Recolher menu">&#9776;</button>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <div class="main-wrapper" id="main-wrapper">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-btn" id="menu-btn">&#9776;</button>
+        <h1 class="topbar-title" id="topbar-title">Início</h1>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-date" id="topbar-date"></span>
+        <div class="topbar-user" id="topbar-user">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+          </svg>
+          <span id="topbar-user-label">Visitante</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTEÚDO DAS PÁGINAS -->
+    <main class="content">
+
+      <!-- ========== INÍCIO ========== -->
+      <section class="page active" id="page-inicio">
+        <div class="welcome-banner">
+          <div class="welcome-text">
+            <h2>Bem-vindo ao sistema de chamados</h2>
+            <p>HOSPITAL DOUTOR OVÍDIO - SOLICITAÇÕES DE MATERIAIS PARA UNIDADES DA SAÚDE.</p>
+          </div>
+          <div class="welcome-icon">🏥</div>
+        </div>
+
+        <div class="stat-cards">
+          <div class="stat-card aberto" id="stat-aberto">
+            <div class="stat-icon">📋</div>
+            <div class="stat-info">
+              <span class="stat-number" id="num-aberto">0</span>
+              <span class="stat-label">Abertos</span>
+            </div>
+          </div>
+          <div class="stat-card atendimento" id="stat-atendimento">
+            <div class="stat-icon">🔧</div>
+            <div class="stat-info">
+              <span class="stat-number" id="num-atendimento">0</span>
+              <span class="stat-label">Em Atendimento</span>
+            </div>
+          </div>
+          <div class="stat-card finalizado" id="stat-finalizado">
+            <div class="stat-icon">✅</div>
+            <div class="stat-info">
+              <span class="stat-number" id="num-finalizado">0</span>
+              <span class="stat-label">Finalizados</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-title">ORDENS DE SERVIÇO</div>
+        <div id="lista-recentes" class="chamados-lista">
+          <p class="empty-msg">Nenhum chamado registrado ainda.</p>
+        </div>
+      </section>
+
+      <!-- ========== ABRIR CHAMADO ========== -->
+      <section class="page" id="page-abrir-chamado">
+        <div class="form-card">
+          <div class="form-card-header">
+            <h2>NOVO CHAMADO</h2>
+            <p>PREENCHA OS DADOS ABAIXO PARA SOLICITAR MATERIAIS À SUA UNIDADE.</p>
+          </div>
+
+          <div class="form-body">
+            <div class="form-group">
+              <label for="inp-nome">SEU NOME <span class="required">*</span></label>
+              <input type="text" id="inp-nome" placeholder="Digite seu nome completo" />
+            </div>
+
+            <div class="form-group">
+              <label for="inp-setor">SETOR ONDE TRABALHA <span class="required">*</span></label>
+              <input type="text" id="inp-setor" placeholder="Ex: UTI, Pronto-Socorro, Farmácia..." />
+            </div>
+
+            <div class="form-group">
+              <label for="inp-urgencia">NÍVEL DE URGÊNCIA <span class="required">*</span></label>
+              <select id="inp-urgencia">
+                <option value="">SELECIONE...</option>
+                <option value="Urgente">🔴 URGENTE</option>
+                <option value="Médio">🟡 MÉDIO</option>
+                <option value="Leve">🟢 LEVE</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="inp-material">MATERIAL(AIS) SOLITADO(S) <span class="required">*</span></label>
+              <textarea id="inp-material" placeholder="Descreva os materiais que sua unidade precisa..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="inp-obs">OBSERVAÇÕES ADICIONAIS</label>
+              <textarea id="inp-obs" placeholder="Informações extras (opcional)..."></textarea>
+            </div>
+
+            <button class="btn-primary btn-full" id="btn-abrir-chamado">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              ABRIR CHAMADO
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== CHAMADOS ========== -->
+      <section class="page" id="page-chamados">
+        <div class="chamados-filtros">
+          <button class="filtro-btn active" data-filtro="todos">TODOS</button>
+          <button class="filtro-btn" data-filtro="Aberto">ABERTOS</button>
+          <button class="filtro-btn" data-filtro="Em Atendimento">EM ATENDIMENTO</button>
+          <button class="filtro-btn" data-filtro="Finalizado">FINALIZADOS</button>
+        </div>
+        <div id="lista-chamados" class="chamados-lista">
+          <p class="empty-msg">NENHUM CHAMADO ENCONTRADO.</p>
+        </div>
+      </section>
+
+      <!-- ========== MEMBROS ========== -->
+      <section class="page" id="page-membros">
+        <div class="form-card">
+          <div class="form-card-header">
+            <h2>ÁREA DE MEMBROS</h2>
+            <p>CONSULTE SEUS CHAMADOS ABERTOS PELO SEU NOME E SETOR.</p>
+          </div>
+          <div class="form-body">
+            <div class="form-group">
+              <label for="membro-nome">SEU NOME</label>
+              <input type="text" id="membro-nome" placeholder="Digite seu nome..." />
+            </div>
+            <button class="btn-primary" id="btn-buscar-membro">BUSCAR MEUS CHAMADOS</button>
+          </div>
+          <div id="resultado-membro" class="chamados-lista" style="margin-top: 24px;"></div>
+        </div>
+      </section>
+
+      <!-- ========== ADMIN LOGIN ========== -->
+      <section class="page" id="page-admin">
+        <div class="form-card form-card-narrow" id="admin-login-card">
+          <div class="form-card-header">
+            <h2>🔐 ÁREA DO ADMINISTRADOR</h2>
+            <p>ACESSO RESTRITO AO ADMINISTRADOR DO SISTEMA.</p>
+          </div>
+          <div class="form-body">
+            <div class="form-group">
+              <label for="admin-usuario">USUÁRIO</label>
+              <input type="text" id="admin-usuario" placeholder="Digite o usuário" />
+            </div>
+            <div class="form-group">
+              <label for="admin-senha">SENHA</label>
+              <div class="input-eye-wrapper">
+                <input type="password" id="admin-senha" placeholder="Digite a senha" />
+                <button type="button" class="eye-btn" id="toggle-senha" title="Mostrar/ocultar senha">👁</button>
+              </div>
+            </div>
+            <p class="form-error" id="login-erro" style="display:none">USUÁRIO OU SENHA INCORRETOS.</p>
+            <button class="btn-primary btn-full" id="btn-login">ENTRAR</button>
+          </div>
+        </div>
+
+        <!-- PAINEL ADMIN (aparece após login) -->
+        <div id="admin-painel" style="display:none">
+          <div class="admin-topbar">
+            <h2>PAINEL ADMINISTRATIVO</h2>
+            <div class="admin-topbar-actions">
+              <button class="btn-outline" id="btn-alterar-senha">🔑 ALTERAR SENHA</button>
+              <button class="btn-danger" id="btn-logout">SAIR</button>
+            </div>
+          </div>
+
+          <!-- MODAL ALTERAR SENHA -->
+          <div class="modal-overlay" id="modal-senha" style="display:none">
+            <div class="modal-box">
+              <h3>ALTERAR SENHA DO ADMINISTRADOR</h3>
+              <div class="form-group">
+                <label>SENHA ATUAL</label>
+                <input type="password" id="senha-atual" placeholder="Senha atual" />
+              </div>
+              <div class="form-group">
+                <label>NOVA SENHA</label>
+                <input type="password" id="senha-nova" placeholder="Nova senha" />
+              </div>
+              <div class="form-group">
+                <label>CONFIRMAR NOVA SENHA</label>
+                <input type="password" id="senha-confirma" placeholder="Repita a nova senha" />
+              </div>
+              <p class="form-error" id="senha-erro" style="display:none"></p>
+              <p class="form-success" id="senha-ok" style="display:none">SENHA ALTERADA COM SUCESSO!</p>
+              <div class="modal-actions">
+                <button class="btn-outline" id="btn-fechar-modal">CANCELAR</button>
+                <button class="btn-primary" id="btn-salvar-senha">SALVAR</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="chamados-filtros">
+            <button class="filtro-btn active" data-filtro-admin="todos">TODOS</button>
+            <button class="filtro-btn" data-filtro-admin="Aberto">ABERTOS</button>
+            <button class="filtro-btn" data-filtro-admin="Em Atendimento">EM ATENDIMENTO</button>
+            <button class="filtro-btn" data-filtro-admin="Finalizado">FINALIZADOS</button>
+          </div>
+
+          <div id="lista-admin" class="chamados-lista"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast"></div>
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>
